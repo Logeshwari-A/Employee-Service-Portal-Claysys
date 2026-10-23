@@ -1,0 +1,408 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AppForms | Service Request Portal</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="app">
+    <aside class="sidebar">
+        <div class="brand">
+            <b class="logo">AF</b>
+            <div>
+            <strong>APP FORMS</strong>
+                <small>Service Request Portal</small>
+            </div>
+        </div>
+
+        <nav>
+            <button type="button" class="nav active" data-page="new">＋ New request</button>
+            <button type="button" class="nav" data-page="mine"># My requests</button>
+            <button type="button" class="nav" data-page="approval">✓ Approval queue</button>
+            <button type="button" class="nav" data-page="reports">▤ Reports</button>
+        </nav>
+
+        <div class="environment">
+            <i></i>
+            <div>
+                <strong>Training environment</strong>
+                <small>Sample employee data</small>
+            </div>
+        </div>
+    </aside>
+
+    <main>
+        <header>
+            <div>
+                <small class="eyebrow">APP FORMS</small>
+                <h1>Service Request Portal</h1>
+            </div>
+
+            <div class="profile">
+                <b>L</b>
+                <div>
+                    <strong>Logeshwari</strong>
+                    <small>Requester</small>
+                </div>
+            </div>
+        </header>
+
+        <div class="page">
+            <div class="intro">
+                <div>
+                    <p class="crumb">Home / Requests / <span id="crumb">New request</span></p>
+                    <h2 id="page-title">Create a service request</h2>
+                    <p id="subtitle">
+                        Describe your request, choose its priority and target date,
+                        then review the details before submitting.
+                    </p>
+                </div>
+                <b class="mock">EMPLOYEE SERVICES</b>
+            </div>
+
+            <!-- NEW REQUEST -->
+            <section id="new-page">
+                <div class="steps">
+                    <div class="step current" data-step="1">
+                        <b>1</b> Request details
+                    </div>
+                    <i></i>
+                    <div class="step" data-step="2">
+                        <b>2</b> Review
+                    </div>
+                    <i></i>
+                    <div class="step" data-step="3">
+                        <b>3</b> Confirmation
+                    </div>
+                </div>
+
+                <div class="columns">
+                    <section class="card form-card">
+                        <div class="kickerrow">
+                            <small class="kicker" id="step-label">STEP 1 OF 3</small>
+                            <small><em>*</em> Required fields for submission</small>
+                        </div>
+
+                        <h3 id="form-heading">Request details</h3>
+
+                        <form id="request-form" novalidate>
+                            <div id="details">
+
+                                <div class="field">
+                                    <label for="title">Request title <em>*</em></label>
+                                    <input id="title" maxlength="150"
+                                        placeholder="Example: Damaged laptop screen">
+                                    <small>Enter a short, clear summary of your request.</small>
+                                    <span class="error" id="title-error"></span>
+                                </div>
+
+                                <div class="field">
+                                    <label for="description">Description <em>*</em></label>
+                                    <textarea id="description" rows="4" maxlength="1000"
+                                        placeholder="Explain the issue, when it started, and how your work is affected."></textarea>
+                                    <div class="foot">
+                                        <small>Do not enter passwords or access tokens.</small>
+                                        <small id="count">0 / 1000</small>
+                                    </div>
+                                    <span class="error" id="description-error"></span>
+                                </div>
+
+                                <div class="row">
+                                    <div class="field">
+                                        <label for="category">Category <em>*</em></label>
+                                        <select id="category">
+                                            <option value="">Select a category</option>
+                                            <option value="Hardware">Hardware</option>
+                                            <option value="Software">Software</option>
+                                            <option value="Access and permissions">Access and permissions</option>
+                                        </select>
+                                        <span class="error" id="category-error"></span>
+                                    </div>
+
+                                    <div class="field">
+                                        <label for="asset">Asset tag</label>
+                                        <input id="asset" maxlength="50"
+                                            placeholder="Example: LAP-1188">
+                                        <small id="asset-help">Required for hardware requests.</small>
+                                        <span class="error" id="asset-error"></span>
+                                    </div>
+                                </div>
+
+                                <div class="row choice-row">
+                                    <fieldset>
+                                        <legend>Business impact <em>*</em></legend>
+                                        <label><input type="radio" name="impact" value="individual"> Individual affected</label>
+                                        <label><input type="radio" name="impact" value="team"> Team affected</label>
+                                        <label><input type="radio" name="impact" value="stopped"> Work stopped</label>
+                                        <span class="error" id="impact-error"></span>
+                                    </fieldset>
+
+                                    <fieldset>
+                                        <legend>Urgency <em>*</em></legend>
+                                        <label><input type="radio" name="urgency" value="routine"> Routine</label>
+                                        <label><input type="radio" name="urgency" value="soon"> Needed soon</label>
+                                        <label><input type="radio" name="urgency" value="immediate"> Immediate</label>
+                                        <span class="error" id="urgency-error"></span>
+                                    </fieldset>
+                                </div>
+
+                                <div class="row">
+                                    <div class="field">
+                                        <label for="priority">Priority <em>*</em></label>
+                                        <select id="priority">
+                                            <option value="">Select priority</option>
+                                            <option value="LOW">Low</option>
+                                            <option value="NORMAL">Normal</option>
+                                            <option value="HIGH">High</option>
+                                        </select>
+                                        <small>Select the priority for this request.</small>
+                                        <span class="error" id="priority-error"></span>
+                                    </div>
+
+                                    <div class="field">
+                                        <label for="target">Target date <em>*</em></label>
+                                        <input id="target" type="date">
+                                        <small>Choose the requested completion date.</small>
+                                        <span class="error" id="target-error"></span>
+                                    </div>
+                                </div>
+
+                                <div class="actions">
+                                    <button type="button" class="secondary" id="save-draft">
+                                        Save draft
+                                    </button>
+                                    <button type="button" class="text-button" id="reset">
+                                        Reset
+                                    </button>
+                                    <button type="button" class="primary" id="submit">
+                                        Review request →
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- REVIEW STEP -->
+                            <div id="review-panel" class="hidden">
+                                <div class="review-banner">
+                                    <b>✓</b>
+                                    <div>
+                                        <strong>Review your request</strong>
+                                        <p>Confirm that all details are correct before submitting.</p>
+                                    </div>
+                                </div>
+
+                                <dl id="review-list"></dl>
+
+                                <div class="actions">
+                                    <button type="button" class="secondary" id="back">
+                                        ← Back to details
+                                    </button>
+                                    <button type="button" class="primary" id="review-submit">
+                                        Submit request →
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- CONFIRMATION STEP -->
+                            <div id="confirmation" class="hidden success">
+                                <b class="success-icon">✓</b>
+                                <h3>Request submitted</h3>
+                                <p>Your service request has been saved to the service request database.</p>
+                                <strong id="request-id"></strong>
+
+                                <div class="actions centered">
+                                    <button type="button" class="primary" id="another">
+                                        Create another request
+                                    </button>
+                                    <button type="button" class="secondary" id="view-mine">
+                                        View my requests
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </section>
+
+                    <!-- LIVE SUMMARY -->
+                    <aside class="right">
+                        <section class="card summary">
+                            <small class="kicker">LIVE PREVIEW</small>
+
+                            <div class="summary-head">
+                                <h3>Request summary</h3>
+                                <b id="draft">DRAFT</b>
+                            </div>
+
+                            <div class="sumline">
+                                <span>Title</span>
+                                <strong id="sum-title">Untitled request</strong>
+                            </div>
+                            <div class="sumline">
+                                <span>Category</span>
+                                <strong id="sum-category">Not selected</strong>
+                            </div>
+                            <div class="sumline">
+                                <span>Asset</span>
+                                <strong id="sum-asset">Not provided</strong>
+                            </div>
+                            <div class="sumline">
+                                <span>Priority</span>
+                                <strong><span id="sum-priority" class="priority low">Not selected</span></strong>
+                            </div>
+                            <div class="sumline">
+                                <span>Target date</span>
+                                <strong id="sum-date">Not selected</strong>
+                            </div>
+
+                            <div class="preview">
+                                <strong>Description preview</strong>
+                                <p id="sum-description">Your description will appear here.</p>
+                            </div>
+                        </section>
+
+                        <section class="card guidance">
+                            <b>?</b>
+                            <div>
+                                <strong>Before you submit</strong>
+                                <ul>
+                                    <li>Complete all required fields.</li>
+                                    <li>Hardware requests require an asset tag.</li>
+                                    <li>Choose the priority and target date.</li>
+                                    <li>Review the details before submitting.</li>
+                                </ul>
+                            </div>
+                        </section>
+                    </aside>
+                </div>
+
+                <!-- RECENT REQUESTS: POPULATED BY JAVASCRIPT -->
+                <section class="card recent-card">
+                    <div class="section-head">
+                        <div>
+                            <small class="kicker">DATABASE RECORDS</small>
+                            <h3>Recent requests</h3>
+                        </div>
+                        <button type="button" class="link-button" id="view-all-requests">
+                            View all requests
+                        </button>
+                    </div>
+
+                    <div class="tablewrap">
+                        <table class="recent-table">
+                            <thead>
+                                <tr>
+                                    <th>Request</th>
+                                    <th>Category</th>
+                                    <th>Priority</th>
+                                    <th>Status</th>
+                                    <th>Target date</th>
+                                </tr>
+                            </thead>
+                            <tbody id="recent-body"></tbody>
+                        </table>
+                    </div>
+                    <p id="recent-empty" class="empty hidden">No requests have been saved yet.</p>
+                </section>
+            </section>
+
+            <!-- MY REQUESTS -->
+            <section id="mine-page" class="card table-card hidden">
+                <div class="section-head">
+                    <div>
+                        <small class="kicker">REQUEST HISTORY</small>
+                        <h3>My requests</h3>
+                        <p>Requests retrieved from the service request database.</p>
+                    </div>
+                    <button type="button" class="primary" id="new-from-list">＋ New request</button>
+                </div>
+
+                <div class="tablewrap">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Request ID</th>
+                                <th>Title</th>
+                                <th>Category</th>
+                                <th>Priority</th>
+                                <th>Target date</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody id="mine-body"></tbody>
+                    </table>
+                </div>
+                <p id="mine-empty" class="empty">No requests found.</p>
+            </section>
+
+            <!-- APPROVAL QUEUE -->
+            <section id="approval-page" class="card table-card hidden">
+                <div class="section-head">
+                    <div>
+                        <small class="kicker">WORKFLOW MANAGEMENT</small>
+                        <h3>Approval queue</h3>
+                        <p>Review pending requests and record an approval decision.</p>
+                    </div>
+                </div>
+
+                <div class="tablewrap">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Request ID</th>
+                                <th>Title</th>
+                                <th>Requester</th>
+                                <th>Priority</th>
+                                <th>Status</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="approval-body"></tbody>
+                    </table>
+                </div>
+                <p id="approval-empty" class="empty">There are no requests waiting for review.</p>
+            </section>
+
+            <!-- REPORTS -->
+            <section id="reports-page" class="hidden">
+                <div class="metrics">
+                    <article class="card metric">
+                        <span>Total requests</span>
+                        <strong id="total">0</strong>
+                        <small>Saved database records</small>
+                    </article>
+                    <article class="card metric">
+                        <span>Pending review</span>
+                        <strong id="pending">0</strong>
+                        <small>Awaiting approval</small>
+                    </article>
+                    <article class="card metric">
+                        <span>High priority</span>
+                        <strong id="high">0</strong>
+                        <small>High-priority requests</small>
+                    </article>
+                    <article class="card metric">
+                        <span>Approved</span>
+                        <strong id="resolved">0</strong>
+                        <small>Approved requests</small>
+                    </article>
+                </div>
+
+                <section class="card table-card">
+                    <small class="kicker">REQUEST OVERVIEW</small>
+                    <h3>Requests by category</h3>
+                    <div id="category-report">
+                        <p class="empty">Request statistics will appear here.</p>
+                    </div>
+                </section>
+            </section>
+
+        </div>
+    </main>
+</div>
+
+<div id="toast" role="status" aria-live="polite"></div>
+<script src="js/app.js"></script>
+</body>
+</html>
